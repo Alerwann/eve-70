@@ -15,7 +15,7 @@ export default function VerifAcces({ children }) {
 
 
   useEffect(() => {
-    console.log(`use effect mdpentre = ${MDPENTRE}`)
+ 
     const codeUrl = searchParams.get('pass');
     const codeStocke = localStorage.getItem('site_access');
 

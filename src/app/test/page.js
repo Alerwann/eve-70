@@ -1,13 +1,13 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { supabase } from '@/supabase';
-import Link from 'next/link';
 
 import {
   uploadImage,
   insertPostBase,
   selectAllPost,
 } from '@/app/utils/post_info_database_funciton';
+import CardPost from '@/component/cardPost';
 
 export default function Home() {
   const [userName, setUserName] = useState('Moi');
@@ -79,7 +79,7 @@ async function handleSubmit(e) {
         </form>
       </div>
       <div>
-       <Link href='/test' className='underline underline-offset-8 text-red-400'>page test</Link>
+    <CardPost allPosts={allPosts}/>
       </div>
     </main>
   );

@@ -9,8 +9,7 @@ export default function FormulaireMdp({ onSucces }) {
 
   const verifierMdp = (e) => {
     e.preventDefault();
-    console.log(`mdp verification ${saisie}`);
-    console.log(`mdp verification ${MDPENTRE}`);
+  
     if (saisie === MDPENTRE) {
       localStorage.setItem('site_access', MDPENTRE);
       onSucces();
