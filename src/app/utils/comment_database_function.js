@@ -18,8 +18,11 @@ export const selectCommentBase = async (idPost) => {
   const { data, error } = await supabase
     .from(commentDB)
     .select('*')
-    .eq('post_id',idPost)
+    .eq('post_id', idPost)
+    .limit(5)
     .order('created_at', { ascending: false });
   if (error) throw error;
   return data;
 };
+
+

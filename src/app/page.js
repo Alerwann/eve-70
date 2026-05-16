@@ -2,6 +2,8 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '@/supabase';
 import Link from 'next/link';
+import CardPost from '@/component/cardPost';
+
 
 import {
   uploadImage,
@@ -17,54 +19,54 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [allPosts, setAllPosts] = useState([]);
 
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const data = await selectAllPost();
+        setAllPosts(data);
+      } catch (error) {
+        console.error('Erreur chargement:', error.message);
+      }
+    }
+    loadData();
+  }, []);
 
-useEffect(() => {
-  async function loadData() {
+  async function handleSubmit(e) {
+    e.preventDefault();
+    if (!description && !file)
+      return alert('Ajoute au moins un texte ou une photo !');
+
+    setLoading(true);
     try {
-      const data = await selectAllPost();
-      setAllPosts(data);
+      let publicUrl = null;
+      if (file) {
+        publicUrl = await uploadImage(file);
+      }
+
+      await insertPostBase(userName, description, category, publicUrl);
+
+      const updatedData = await selectAllPost();
+      setAllPosts(updatedData);
+
+      alert('Post publié !');
+      setDescription('');
     } catch (error) {
-      console.error('Erreur chargement:', error.message);
+      alert('Erreur : ' + error.message);
+    } finally {
+      setLoading(false);
     }
   }
-  loadData();
-}, []);
-
-async function handleSubmit(e) {
-  e.preventDefault();
-  if (!description && !file)
-    return alert('Ajoute au moins un texte ou une photo !');
-
-  setLoading(true);
-  try {
-    let publicUrl = null;
-    if (file) {
-      publicUrl = await uploadImage(file);
-    }
-
-    await insertPostBase(userName, description, category, publicUrl);
-
-
-    const updatedData = await selectAllPost();
-    setAllPosts(updatedData);
-
-    alert('Post publié !');
-    setDescription(''); 
-  } catch (error) {
-    alert('Erreur : ' + error.message);
-  } finally {
-    setLoading(false);
-  }
-}
 
   if (loading) {
     return <div>En chargement</div>;
   }
   return (
     <main>
-      Bienvenue sur le site d'échanges d'annecdotes sur eve
+      <h1> Bienvenue sur le site d'échanges d'annecdotes sur eve</h1>
+
       <div className="w-full">
-        Ajout d'un post rapide
+        <Link href="/addComment"> Ajout d'un post rapide</Link>
+
         <form onSubmit={handleSubmit}>
           <textarea
             className="w-0.8 border-4 border-violet-400 "
@@ -79,7 +81,15 @@ async function handleSubmit(e) {
         </form>
       </div>
       <div>
-       <Link href='/test' className='underline underline-offset-8 text-red-400'>page test</Link>
+        <CardPost allPosts={allPosts} />
+      </div>
+      <div>
+        <Link
+          href="/test"
+          className="underline underline-offset-8 text-red-400"
+        >
+          page test
+        </Link>
       </div>
     </main>
   );

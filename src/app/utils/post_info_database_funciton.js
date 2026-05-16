@@ -4,6 +4,7 @@ const postDB = 'post_info';
 
 export const insertPostBase = async (
   userName,
+  title,
   description,
   categorie,
   publicUrl,
@@ -11,6 +12,7 @@ export const insertPostBase = async (
   const { data, error } = await supabase.from(postDB).insert([
     {
       user_name: userName,
+      title:title,
       description: description,
       categorie: categorie,
       image_url: publicUrl,
@@ -24,7 +26,6 @@ export const selectAllPost = async () => {
   const { data, error } = await supabase
     .from(postDB)
     .select('*')
-
     .order('created_at', { ascending: false });
 
   if (error) throw error;
@@ -45,7 +46,7 @@ export const selectPostBase = async (categorie) => {
 export const uploadImage = async (file) => {
   const fileName = `${Date.now()}-${file.name}`;
 
-  const { data: uploadData, error: uploadError } = await supabase.storage
+  const { data: updatedData, error: uploadError } = await supabase.storage
     .from('photo')
     .upload(fileName, file);
 

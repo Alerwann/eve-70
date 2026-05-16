@@ -3,6 +3,8 @@
 import { insertCommentBase } from '@/app/utils/comment_database_function';
 import { useState, useEffect } from 'react';
 
+
+
 export default function CommentButton({ idPost }) {
   const [showComment, setShowComment] = useState(false);
   const [comment, setComment] = useState('');

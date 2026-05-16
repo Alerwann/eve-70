@@ -18,6 +18,7 @@ export default function Home() {
   const [allPosts, setAllPosts] = useState([]);
 
 
+
 useEffect(() => {
   async function loadData() {
     try {
@@ -27,6 +28,7 @@ useEffect(() => {
       console.error('Erreur chargement:', error.message);
     }
   }
+  
   loadData();
 }, []);
 
@@ -62,7 +64,8 @@ async function handleSubmit(e) {
   }
   return (
     <main>
-      Bienvenue sur le site d'échanges d'annecdotes sur eve
+      <h1> Bienvenue sur le site d'échanges d'annecdotes sur eve</h1>
+
       <div className="w-full">
         Ajout d'un post rapide
         <form onSubmit={handleSubmit}>
@@ -79,7 +82,7 @@ async function handleSubmit(e) {
         </form>
       </div>
       <div>
-    <CardPost allPosts={allPosts}/>
+        <CardPost allPosts={allPosts} />
       </div>
     </main>
   );

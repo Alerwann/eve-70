@@ -1,13 +1,15 @@
 'use client'
 import { selectCommentBase } from '@/app/utils/comment_database_function';
 import { useState, useEffect } from 'react';
-export default function CommentList(idComment) {
+export default function CommentList({idComment}) {
     const [allComment, setAllComment]=useState([])
-    useEffect(() => {
+  useEffect(() => {
+      
       async function loadData() {
         try {
-          const data = await selectCommentBase(idComment);
-          setAllComment(data);
+          const dataComment = await selectCommentBase(idComment);
+    
+          setAllComment(dataComment);
         } catch (error) {
           console.error('Erreur chargement:', error.message);
         }
@@ -16,13 +18,14 @@ export default function CommentList(idComment) {
     }, []);
     if (allComment.length===0) {
         return <p>Pas encore de commentaire</p>
-    }
+  }
+
 
     return (
         <div>
             {allComment.map((comments) => {
-                return <li>
-                    {comments.userName}
+                return <li key={comments.id}>
+                    {comments.content}
                 </li>
             })
 
