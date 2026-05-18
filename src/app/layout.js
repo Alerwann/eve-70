@@ -2,6 +2,8 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import { Suspense } from 'react';
 import VerifAcces from '@/context/auth_verif';
+import HeaderPage from '@/component/header/header';
+import FooterPage from '@/component/footer';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -24,9 +26,15 @@ export default function RootLayout({ children }) {
       lang="fr"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="h-full ">
+      <body className="h-full   ">
         <Suspense fallback={<div>Chargement...</div>}>
-          <VerifAcces>{children}</VerifAcces>
+          <VerifAcces>
+            <HeaderPage />
+
+            {children}
+
+            <FooterPage />
+          </VerifAcces>
         </Suspense>
       </body>
     </html>

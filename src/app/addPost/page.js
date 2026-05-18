@@ -5,6 +5,7 @@ import {
   insertPostBase,
   selectAllPost,
 } from '@/app/utils/post_info_database_funciton';
+import ImageFond from '@/component/fond_image';
 
 export default function AddComment() {
   const [file, setFile] = useState(null);
@@ -33,7 +34,7 @@ export default function AddComment() {
       setAllPosts(updatedData);
 
       alert('Post publié !');
-      setDescription('');
+      setLegend('');
     } catch (error) {
       alert('Erreur : ' + error.message);
     } finally {
@@ -44,8 +45,9 @@ export default function AddComment() {
     return <p>En chargement ...</p>;
   }
   return (
-    <div className=" p-2  flex flex-col gap 5 items-center content-center justify-center">
-      <h2 className="text-3xl mb-5">Formulaire d'ajout de posts </h2>
+    <main className="  flex flex-col gap 5   ">
+      <ImageFond/>
+      <h2 className="text-3xl m-5 text-center">Formulaire d'ajout de posts </h2>
       <form className="flex flex-col items-center" onSubmit={handleSubmit}>
         <div className=" p-2 m-1 grid grid-cols-[1fr_2fr] gap-10 bg-purple-100">
           <label className="text-center">Nom ou surnom </label>
@@ -63,7 +65,7 @@ export default function AddComment() {
             name="title"
             type="text"
             className="p-2 flex-2 border-2 bg-gray-50 rounded-2xl "
-            onChange={(e) => setUserName(e.target.value)}
+            onChange={(e) => setTitle(e.target.value)}
             required
           />
 
@@ -114,6 +116,6 @@ export default function AddComment() {
           </div>
         </div>
       </form>
-    </div>
+    </main>
   );
 }

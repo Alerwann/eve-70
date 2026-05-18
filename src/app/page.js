@@ -1,15 +1,15 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { supabase } from '@/supabase';
-import Link from 'next/link';
+
 import CardPost from '@/component/cardPost';
 
 
 import {
-  uploadImage,
-  insertPostBase,
-  selectAllPost,
+  selectLimitPost,
 } from '@/app/utils/post_info_database_funciton';
+
+
+import ImageFond from '@/component/fond_image';
 
 export default function Home() {
   const [userName, setUserName] = useState('Moi');
@@ -22,7 +22,7 @@ export default function Home() {
   useEffect(() => {
     async function loadData() {
       try {
-        const data = await selectAllPost();
+        const data = await selectLimitPost();
         setAllPosts(data);
       } catch (error) {
         console.error('Erreur chargement:', error.message);
@@ -31,65 +31,47 @@ export default function Home() {
     loadData();
   }, []);
 
-  async function handleSubmit(e) {
-    e.preventDefault();
-    if (!description && !file)
-      return alert('Ajoute au moins un texte ou une photo !');
 
-    setLoading(true);
-    try {
-      let publicUrl = null;
-      if (file) {
-        publicUrl = await uploadImage(file);
-      }
-
-      await insertPostBase(userName, description, category, publicUrl);
-
-      const updatedData = await selectAllPost();
-      setAllPosts(updatedData);
-
-      alert('Post publié !');
-      setDescription('');
-    } catch (error) {
-      alert('Erreur : ' + error.message);
-    } finally {
-      setLoading(false);
-    }
-  }
 
   if (loading) {
     return <div>En chargement</div>;
   }
+
   return (
-    <main>
-      <h1> Bienvenue sur le site d'échanges d'annecdotes sur eve</h1>
-
-      <div className="w-full">
-        <Link href="/addComment"> Ajout d'un post rapide</Link>
-
-        <form onSubmit={handleSubmit}>
-          <textarea
-            className="w-0.8 border-4 border-violet-400 "
-            onChange={(e) => setDescription(e.target.value)}
-          />
-          <button
-            type="submit"
-            className="border-2 rounded-2xl border-green-600 p-2 cursor-pointer "
-          >
-            Valider
-          </button>
-        </form>
+    <main className="overflow-y-auto">
+      <ImageFond/>
+      <div className='bg-sky-100   '>
+        <h1 className="text-center text-2xl mb-10">
+          Bienvenue sur le site d'échanges d'annecdotes sur eve
+        </h1>
+        <section>
+          <p className="text-center">
+            Voici un site pour paratager nos photos et annecdotes avec Eve.
+            <br />
+            Il est possible de poster des photos ou juste des annecdotes. Une
+            fois poster d'autre pourront commenter l'histoire. <br />
+            À partir de octobre nous extrairons les photos, les histoire et les
+            commentaires pour en faire un format papier. <br />
+            Il se peut que d'autres personnes utilisent les informations pour en
+            faire un text, une chanson ou autre.
+            <br />
+            Une fois l'événement passé, ce site sera communiqué avec Eve et on
+            pourra évidemment communiquer nos plus belles photo de cette soirée.
+            <br></br>À vos souvenir et vos plumes ...
+          </p>
+        </section>
       </div>
+
       <div>
         <CardPost allPosts={allPosts} />
       </div>
       <div>
-        <Link
+        {/* <Link
           href="/test"
           className="underline underline-offset-8 text-red-400"
         >
           page test
-        </Link>
+        </Link> */}
       </div>
     </main>
   );

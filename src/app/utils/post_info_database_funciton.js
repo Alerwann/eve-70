@@ -12,7 +12,7 @@ export const insertPostBase = async (
   const { data, error } = await supabase.from(postDB).insert([
     {
       user_name: userName,
-      title:title,
+      title: title,
       description: description,
       categorie: categorie,
       image_url: publicUrl,
@@ -26,6 +26,17 @@ export const selectAllPost = async () => {
   const { data, error } = await supabase
     .from(postDB)
     .select('*')
+    .order('created_at', { ascending: false });
+
+  if (error) throw error;
+  return data;
+};
+
+export const selectLimitPost = async () => {
+  const { data, error } = await supabase
+    .from(postDB)
+    .select('*')
+    .limit(5)
     .order('created_at', { ascending: false });
 
   if (error) throw error;
