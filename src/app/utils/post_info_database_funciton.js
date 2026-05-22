@@ -57,7 +57,7 @@ export const selectPostBase = async (categorie) => {
 export const uploadImage = async (file) => {
   const fileName = `${Date.now()}-${file.name}`;
 
-  const { data: updatedData, error: uploadError } = await supabase.storage
+  const { error: uploadError } = await supabase.storage
     .from('photo')
     .upload(fileName, file);
 
@@ -66,3 +66,11 @@ export const uploadImage = async (file) => {
   const { data } = supabase.storage.from('photo').getPublicUrl(fileName);
   return data.publicUrl;
 };
+
+export const categoryPost = async (categorie)=>{
+if (categorie === "all"){
+  return await selectAllPost();
+}else{
+  return await selectPostBase(categorie)
+}
+}

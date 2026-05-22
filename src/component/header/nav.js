@@ -7,7 +7,7 @@ const navLink =
 export default function NavPage() {
   return (
     <nav className="p-5 flex flex-row items-center content-center justify-around decoration">
-      <Link href="./" className={navLink}>
+      <Link href="/" className={navLink}>
         Accueil
       </Link>
 
@@ -18,16 +18,16 @@ export default function NavPage() {
       <Link href="/categoryPost/all" className={navLink}>
         Tous les posts
       </Link>
-      <Link href="./" className={navLink}>
+      <Link href="/categoryPost/famille" className={navLink}>
         Famille
       </Link>
-      <Link href="./" className={navLink}>
+      <Link href="/categoryPost/ami" className={navLink}>
         Amis
       </Link>
-      <Link href="./" className={navLink}>
+      <Link href="/categoryPost/voyage" className={navLink}>
         Voyage
       </Link>
-      <Link href="./" className={navLink}>
+      <Link href="/categoryPost/dossier" className={navLink}>
         Dossier 🧧
       </Link>
     </nav>
