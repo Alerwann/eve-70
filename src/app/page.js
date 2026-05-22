@@ -12,20 +12,23 @@ import {
 import ImageFond from '@/component/fond_image';
 
 export default function Home() {
-  const [userName, setUserName] = useState('Moi');
-  const [description, setDescription] = useState('');
-  const [category, setCategory] = useState('Général');
-  const [file, setFile] = useState(null);
+  // const [userName, setUserName] = useState('Moi');
+  // const [description, setDescription] = useState('');
+  // const [category, setCategory] = useState('Général');
+  // const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [allPosts, setAllPosts] = useState([]);
 
   useEffect(() => {
     async function loadData() {
+      setLoading(true)
       try {
         const data = await selectLimitPost();
         setAllPosts(data);
       } catch (error) {
         console.error('Erreur chargement:', error.message);
+      }finally{
+        setLoading(false)
       }
     }
     loadData();

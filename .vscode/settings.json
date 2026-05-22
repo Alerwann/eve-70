@@ -1,0 +1,11 @@
+{
+    "editor.defaultFormatter": "biomejs.biome",
+    "biome.runFromTemporaryLocation": false,
+     "editor.codeActionsOnSave": {
+    "source.organizeImports.biome": "explicit",
+    "source.fixAll.biome": "explicit"
+  },
+  
+
+
+}

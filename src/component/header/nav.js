@@ -15,7 +15,7 @@ export default function NavPage() {
         Poster
       </Link>
 
-      <Link href="./" className={navLink}>
+      <Link href="/categoryPost/all" className={navLink}>
         Tous les posts
       </Link>
       <Link href="./" className={navLink}>
