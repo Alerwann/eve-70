@@ -4,7 +4,8 @@ import * as React from "react";
 import { useEffect, useState } from "react";
 
 import { categoryPost } from "@/app/utils/post_info_database_funciton";
-import CardPost from "@/component/cardPost";
+import CardPost from "@/component/postCard/cardPost";
+import LoadingScreen from "@/component/screensParticular/loadingScreen";
 
 export default function CategoryPage({ params }) {
 	const categoryName = React.use(params).slug;
@@ -33,7 +34,7 @@ useEffect(() => {
  
 
 	if (loading) {
-		return <div>En chargement</div>;
+	  return <LoadingScreen/>;
 	}
     if(allCategoryPosts.length ===0 ){
         return <main>Pas encore de post</main>

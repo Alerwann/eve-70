@@ -4,7 +4,8 @@ import {
 	insertPostBase,
 	uploadImage,
 } from "@/app/utils/post_info_database_funciton";
-import ImageFond from "@/component/fond_image";
+import ImageFond from "@/component/global/fond_image";
+import LoadingScreen from "@/component/screensParticular/loadingScreen";
 
 export default function AddComment() {
 	const [file, setFile] = useState(null);
@@ -39,7 +40,7 @@ export default function AddComment() {
 		}
 	}
 	if (loading) {
-		return <p>En chargement ...</p>;
+		return <LoadingScreen/>;
 	}
 	return (
 		<main className="  flex flex-col gap 5   ">

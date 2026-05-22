@@ -1,11 +1,12 @@
 "use client";
+import Link from "next/link";
 import { useEffect, useState } from "react";
-import CardPost from "@/component/cardPost";
-import ImageFond from "@/component/fond_image";
+import ImageFond from "@/component/global/fond_image";
+import CardPost from "@/component/postCard/cardPost";
+import LoadingScreen from "@/component/screensParticular/loadingScreen";
 import { selectLimitPost } from "./utils/post_info_database_funciton";
 
 export default function Home() {
-
 	const [loading, setLoading] = useState(false);
 	const [allPosts, setAllPosts] = useState([]);
 
@@ -25,7 +26,7 @@ export default function Home() {
 	}, []);
 
 	if (loading) {
-		return <div>En chargement</div>;
+		return <LoadingScreen/>;
 	}
 
 	return (
@@ -57,12 +58,12 @@ export default function Home() {
 				<CardPost allPosts={allPosts} />
 			</div>
 			<div>
-				{/* <Link
-          href="/test"
-          className="underline underline-offset-8 text-red-400"
-        >
-          page test
-        </Link> */}
+				<Link
+					href="/test"
+					className="underline underline-offset-8 text-red-400"
+				>
+					page test
+				</Link>
 			</div>
 		</main>
 	);
