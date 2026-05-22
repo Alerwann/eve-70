@@ -1,10 +1,12 @@
 import Image from "next/image";
 import { useState } from "react";
+
 import CommentButton from "./commentButton";
 import CommentList from "./commentList";
 
 export default function CardPost({ allPosts }) {
 	const [refreshComments, setRefreshComments] = useState(null);
+
 	return (
 		<div className=" p-5 z-0 gap-3 flex flex-col content-center items-center">
 			{allPosts.map((post) => {

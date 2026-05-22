@@ -1,5 +1,5 @@
 "use client";
-import Link from "next/link";
+
 import { useEffect, useState } from "react";
 import ImageFond from "@/component/global/fond_image";
 import CardPost from "@/component/postCard/cardPost";
@@ -57,14 +57,14 @@ export default function Home() {
 			<div>
 				<CardPost allPosts={allPosts} />
 			</div>
-			<div>
+			{/* <div>
 				<Link
 					href="/test"
 					className="underline underline-offset-8 text-red-400"
 				>
 					page test
 				</Link>
-			</div>
+			</div> */}
 		</main>
 	);
 }
