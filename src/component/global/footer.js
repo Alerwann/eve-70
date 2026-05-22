@@ -6,6 +6,6 @@ export default function FooterPage() {
             ©️ Marie Guehl - 2026
         </p>
         <a href="mailto:marieguehl@gmail.com?subject=Aide%20Site%20annivEve" className="cursor-pointer underline underline-offset-2 ">Contactez nous </a>
-        <Link href="/pageLegale">Informations sur les données partagées</Link>
+        <Link href="/pageLegale" className="cursor-pointer underline underline-offset-2">Informations sur les données partagées</Link>
     </footer>
 }
