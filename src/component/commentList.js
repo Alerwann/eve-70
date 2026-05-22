@@ -32,13 +32,14 @@ export default function CommentList({ idComment, setRefreshTrigger }) {
   }
 
   return (
-    <div className='bg-amber-200 w-full overflow-y-auto h-75 p-3'>
+    <div className='bg-amber-200/30 w-full overflow-y-auto h-75 p-3 rounded-l-2xl'>
+      <span className='font-bold'>Commentaires :</span>
       {allComment.map((comments) => {
         const {textOut, isConcat}=concatText(comments.content,200)
         return (
-          <div key={comments.id} className='bg-amber-50 m-1 flex flex-col'>
+          <div key={comments.id} className='bg-amber-50 m-1 flex flex-col rounded-xl'>
             <span className='font-bold text-l p-2 '>{comments.user_name }</span>
-            <span className='p-2 bg-amber-100/65'>{textOut}</span>
+            <span className='p-2 bg-amber-100/55'>{textOut}</span>
             {isConcat && <Link href={`/post/${idComment}`}>Voir plus</Link>}
           </div>
         );
