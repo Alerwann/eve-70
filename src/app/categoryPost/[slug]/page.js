@@ -3,7 +3,7 @@ import * as React from "react";
 
 import { useEffect, useState } from "react";
 import { categoryPost } from "@/app/utils/post_info_database_funciton";
-import tradName from "@/app/utils/trad_name";
+import {tradName} from "@/app/utils/trad_name";
 import ImageFond from "@/component/global/fond_image";
 import CardPost from "@/component/postCard/cardPost";
 import EmptyScreen from "@/component/screensParticular/emptyScreen";
