@@ -47,7 +47,7 @@ export default function AddComment() {
 			<ImageFond />
 			<h2 className="text-3xl m-5 text-center">Formulaire d'ajout de posts </h2>
 			<form className="flex flex-col items-center" onSubmit={handleSubmit}>
-				<div className=" p-2 m-1 grid grid-cols-[1fr_2fr] gap-10 bg-purple-100">
+				<div className=" p-2 m-1 grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-10 bg-purple-100">
 					<label htmlFor="userName" className="text-center">
 						Nom ou surnom{" "}
 					</label>
